@@ -18,17 +18,41 @@
         <center>
             <div class="heading btn btn-primary">
                 <h3>AI-Ping-Pong</h3>
-                <button class = "btn btn-primary" target="#myModal" data-toggle="modal">instructions</button>
+                <button class = "btn btn-primary" data-target="#myModal" data-toggle="modal">instructions</button>
             </div>
 
             <br><br>
-            <button id="play" class = "btn btn-success" onclick="startGame()">Play</button>
+            <button id="play" class = "btn btn-success btn-lg" onclick="startGame()">Play</button>
             <br><br>
             <h3 class = "btn btn-warning" id="status"></h3>
             <br><br>
             <div id = "game_console">
-                
             </div>
+            <br><br>
+            <button class = "btn btn-danger btn-lg" id = "restart_button" onclick="restart()">Restart</button>
+
+            <div class="modal fade" id = "myModal">
+                <div class = "modal-dialog">
+                  <div class = "modal-content">
+          
+                    <div class = "modal-header">
+                      <button class="close" data-dismiss = "modal">&times;</button>
+                      <h4>Instructions</h4>
+                    </div>
+          
+                    <div class = "modal-body">
+                        <ol>
+                      <li> First keep your laptop screen straight</h1>
+                      <li> Move yourself approximately 3-4 feet away from the laptop</h1>
+                      <li> Move your right wrist in an ascending and decending manner, a red dot should appear on your right wrist</h1>
+                      <li> Now press the play button, and again move yourself 3-4 feet away from laptop</h1>
+                      <l1> The red paddel is your paddel, that will move as per the movement of your right wrist</h1>
+                        </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
         </center>
         <script src="main.js"></script>
     </body>
