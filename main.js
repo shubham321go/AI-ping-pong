@@ -1,3 +1,8 @@
+rightWrist_x = "";
+rightWrist_y = "";
+rightWrist_score = "";
+
+
 
 /*created by prashant shukla */
 
@@ -28,10 +33,15 @@ function setup(){
     video.size(700, 600);
     video.hide();
     poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on("pose", gotPoses);
    
 }
 
-
+function startGame()
+{
+  game_status = "start";
+  document.getElementById("status").innerHTML = "Game Is Loading";
+}
 
 function draw(){
 
@@ -45,6 +55,18 @@ function draw(){
  fill("black");
  stroke("black");
  rect(0,0,20,700);
+
+ if (rightWrist_score > 0.2)
+ {
+   fill("#ff0000");
+   stroke("#00ff00");
+   circle(rightWrist_x, rightWrist_y,20);
+ }
+
+ if(game_status = "start")
+ {
+   document.getElementById("status").innerHTML ="Game is Loaded";
+ }
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
@@ -53,7 +75,7 @@ function draw(){
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
-   paddle1Y = mouseY; 
+   paddle1Y = rightWrist_y; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
    
    
@@ -73,6 +95,8 @@ function draw(){
    
    //function move call which in very important
     move();
+
+    
 }
 
 
@@ -172,4 +196,14 @@ function paddleInCanvas(){
 }
 function modelLoaded() {
   console.log('PoseNet Is Initialized');
+}
+function gotPoses(results)
+{
+  if(results.length > 0)
+  {
+    console.log(results);
+    rightWrist_x = results[0].pose.rightWrist.x;
+    rightWrist_y = results[0].pose.rightWrist.y;
+    rightWrist_score = results[0].pose.keypoints[10].score;
+  }
 }
